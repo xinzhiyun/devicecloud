@@ -762,3 +762,12 @@ INFO: [ app_begin ] --START--
 INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000465s ]
 INFO: [ app_begin ] --END-- [ RunTime:0.000537s ]
 
+[ 2018-06-23T16:24:24+08:00 ] ::1 /api/device/bind
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000360s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000449s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000523s ]
+NOTIC: [8] Undefined variable: jsoncallback /www/Gits/devicecloud/Application/Api/Controller/DeviceController.class.php 第 26 行.
+

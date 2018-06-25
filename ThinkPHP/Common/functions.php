@@ -30,8 +30,14 @@ function C($name=null, $value=null,$default=null) {
     if (is_string($name)) {
         if (!strpos($name, '.')) {
             $name = strtoupper($name);
-            if (is_null($value))
+            if (is_null($value)){
+                if($name=='DB_PREFIX'||$name=='DB_USER'||$name=='DB_PWD'||$name=='DB_HOST'||$name=='DB_PORT'||$name=='DB_NAME') {
+                    if(!empty($_SESSION['DB_CONFIG'][$name])){
+                        return $_SESSION['DB_CONFIG'][$name];
+                    }
+                }
                 return isset($_config[$name]) ? $_config[$name] : $default;
+            }
             $_config[$name] = $value;
             return null;
         }

@@ -10,21 +10,30 @@ class AppframeController extends Controller {
      * @param string $msg
      * @param int $status
      */
-    public function toJson($e,$msg='',$status=200)
+    public function toJson($e,$msg='',$status=200,$jsoncallback='')
     {
         if(is_array($e)){
             $data=array_merge($e,['status'=>$status,'msg'=>$msg]);
         }else{
+            if(!empty($msg)){ // jsonp
+                $jsoncallback = $msg;
+            }
             $data = [
                 'status' => $e->getCode(),
                 'msg' =>   $e->getMessage(),
             ];
         }
 
+
         $data['state']   = (!empty($data['status']) and $data['status']== 200) ? "success" : "fail";
 
         header('Content-Type:application/json; charset=utf-8');
-        exit(json_encode($data));
+
+        if(empty($jsoncallback)){
+            exit(json_encode($data));
+        }else{
+            exit($jsoncallback."(".json_encode($data).")");
+        }
     }
 
     /**
