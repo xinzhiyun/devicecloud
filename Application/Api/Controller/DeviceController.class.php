@@ -104,7 +104,7 @@ class DeviceController extends AppframeController
      */
     public static function action($post=[])
     {
-        $mode = (string)$post['mode'];
+//        $mode = (string)$post['mode'];
 //        switch ($mode){
 //            case '5':
 //                $data = $post['data'];
@@ -157,8 +157,18 @@ class DeviceController extends AppframeController
             if (empty($post['deviceID']) ) {
                 E('数据不完整', 40001);
             }
+            $post['deviceID'] = trim($post['deviceID']);
+
+            // 主库
+            $device_could_info = M('devices')->where("deviceid='{$post['deviceID']}'")->find();
+            if(empty($device_could_info)){
+                $res = M('devices')->add( ['deviceid'=>$post['deviceID'], 'addtime'=>time()] );
+                if(empty($res)) E('入库失败',40002);
+            }
+
+            // 客户库
             $device_model = D('devices');
-            $device_info = $device_model->where('device_code='.$post['deviceID'])->find();
+            $device_info = $device_model->where("device_code='{$post['deviceID']}'")->find();
 
             if( !empty($device_info) ){
                 if(!empty($post['type_id'])){
