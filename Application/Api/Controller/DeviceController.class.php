@@ -237,13 +237,14 @@ class DeviceController extends AppframeController
                 $addData['addtime']     = time();
 
                 if(!empty($post['type_id'])){
-                    $saveData['type_id'] = $post['type_id'];
+                    $addData['type_id'] = $post['type_id'];
                 }
                 $res = $device_model->add($addData);
 
                 if(!empty($post['vid'])){
                     if( $this->bindDevice($res, $post['vid']) ){
                         $saveData['binding_statu'] = 1;
+                        $device_model->where('id='.$res)->save($saveData);
                     }
                 }
             }
