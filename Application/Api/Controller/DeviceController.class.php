@@ -2,6 +2,7 @@
 namespace Api\Controller;
 
 use Common\Tool\GatewayClient;
+use Think\Log;
 
 class DeviceController extends AppframeController
 {
@@ -20,6 +21,7 @@ class DeviceController extends AppframeController
             }
 
             if(GatewayClient::bind($post['client_id'], $post['deviceID'])){
+                GatewayClient::action(99, $post['deviceID']);
                 E('成功',200);
             }else{
                 E('失败',40010);
@@ -31,6 +33,18 @@ class DeviceController extends AppframeController
 
     /**
      * web端 设备操作
+     *   *  参数 mode
+     *   1   //开机
+     *   2   //关机
+     *   3   //冲洗
+     *   4   //取消冲洗
+     *   5   //复位滤芯  "Pram":[1,2] 滤芯级数
+     *   6   //绑定设备
+     *   7   //解绑设备
+     *   8   //充值100天  "Pram":{"mode":2,”val”:100}
+     *   9   //充值100L   "Pram":{"mode":1,”val”:100}}
+     *   10  //租赁模式修改  'Pram' 0 买断模式  1 流量 2 时长 3 时长和流量
+     *   11  //滤芯模式修改  'Pram' 0 时长 1 流量 2 时长和流量
      */
     public function deviceAction()
     {
@@ -50,11 +64,13 @@ class DeviceController extends AppframeController
 
             $jsoncallback = htmlspecialchars($_REQUEST['jsoncallback']);
 
-            $res = self::action(['mode'=>$post['mode'], 'deviceID'=>$post['deviceID'], 'data'=>$data]);
-            if($res){
-                E('成功',200);
-            }else{
+            $res = GatewayClient::action($post['mode'], $post['deviceID'], $data);
+            Log::write($res,'设备返回');
+            //$res = self::action(['mode'=>$post['mode'], 'deviceID'=>$post['deviceID'], 'data'=>$data]);
+            if(empty($res)){
                 E('设备操作失败!',40010);
+            }else{
+                E('成功',200);
             }
 
         } catch (\Exception $e) {
@@ -75,7 +91,29 @@ class DeviceController extends AppframeController
             if (empty($post['mode']) || empty($post['deviceID']) ) {
                 E('数据不完整', 40001);
             }
-            $res = self::action( ['mode'=>$post['mode'], 'deviceID'=>$post['deviceID'], 'data'=>$post['data']] );
+
+            $mode = (string)$post['mode'];
+            switch ($mode){
+                case '5':
+                    if(!empty($post['data'])){
+                        $data = explode('_',$post['data']);
+                    }
+                    break;
+                case '8':
+                    $data = $post['data'];
+                    break;
+                case '9':
+                    $data = $post['data'];
+                    break;
+                case '10':
+                    $data = $post['data'];
+                    break;
+                case '11':
+                    $data = $post['data'];
+                    break;
+            }
+
+            $res = GatewayClient::action($mode, $post['deviceID'], $data);
             if($res){
                 E('成功',200);
             }else{
@@ -140,9 +178,10 @@ class DeviceController extends AppframeController
     // 获取登陆用户的产品型号 和 经销商
     public function getDeviceDataList()
     {
-        $data['typelist'] = D('DeviceType')->field('id type_id,typename')->select();
 
-        $data['vendorslist'] = D('vendors')->field('id vid,name')->select();
+        $data['typelist'] = M('DeviceType')->field('id type_id,typename')->select();
+
+        $data['vendorslist'] = M('Vendors')->field('id vid,name')->select();
 
         self::toJson($data,'获取成功',200);
     }
@@ -159,15 +198,25 @@ class DeviceController extends AppframeController
             }
             $post['deviceID'] = trim($post['deviceID']);
 
+            if(empty($_SESSION['acid'])){
+                E('请登录!', 40003);
+            }
+            Log::write(json_encode($post),'设备入库');
+
             // 主库
-            $device_could_info = M('devices')->where("deviceid='{$post['deviceID']}'")->find();
-            if(empty($device_could_info)){
-                $res = M('devices')->add( ['deviceid'=>$post['deviceID'], 'addtime'=>time()] );
-                if(empty($res)) E('入库失败',40002);
+            $DevicesCloud = D('DevicesCloud');
+
+            $device_could_info = $DevicesCloud->where("deviceid='{$post['deviceID']}'")->find();
+            if(empty($device_could_info )){
+                $res = $DevicesCloud->add( ['deviceid'=>$post['deviceID'], 'addtime'=>time(), 'acid'=>$_SESSION['acid']] );
+                if(empty($res)) E('入库失败!',40004);
+            }else{
+                $res = $DevicesCloud->where('id='.$device_could_info['id'])->save( [ 'addtime'=>time(), 'acid'=>$_SESSION['acid']] );
+                if(empty($res)) E('入库更新失败!',40005);
             }
 
             // 客户库
-            $device_model = D('devices');
+            $device_model = M('devices',$_SESSION['DB_CONFIG']['DB_PREFIX']);
             $device_info = $device_model->where("device_code='{$post['deviceID']}'")->find();
 
             if( !empty($device_info) ){
@@ -184,7 +233,7 @@ class DeviceController extends AppframeController
                 $res =  $device_model->where('id='.$device_info['id'])->save($saveData);
 
             } else {
-                $addData['device_code'] = $post['device_code'];
+                $addData['device_code'] = $post['deviceID'];
                 $addData['addtime']     = time();
 
                 if(!empty($post['type_id'])){
@@ -193,7 +242,7 @@ class DeviceController extends AppframeController
                 $res = $device_model->add($addData);
 
                 if(!empty($post['vid'])){
-                    if( $this->bindDevice($device_info['id'], $post['vid']) ){
+                    if( $this->bindDevice($res, $post['vid']) ){
                         $saveData['binding_statu'] = 1;
                     }
                 }
@@ -212,7 +261,7 @@ class DeviceController extends AppframeController
     // 绑定设备或更新绑定信息
     public function bindDevice($did, $vid)
     {
-        $binding_model = D('binding');
+        $binding_model = M('binding');
         $device_bind = $binding_model->where('did='.$did)->find();
         $time = time();
         if(empty($device_bind)){

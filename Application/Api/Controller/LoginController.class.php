@@ -14,9 +14,31 @@ class LoginController extends AppframeController
             if ( empty($post['user']) ) {
                 E('数据不完整', 40001);
             }
-            $data = M('account')->where("user='{$post['user']}'")->find();
+            $data = M('','',C('SUPERVISE_DB'))->table('account')->where("user='{$post['user']}'")->find();
 
             if(!empty($data)){
+                $_SESSION['acid'] = $data['id'];
+                self::toJson(['data'=>$data],'成功',200);
+            }else{
+                E('失败',40010);
+            }
+        } catch (\Exception $e) {
+            self::toJson($e);
+        }
+    }
+
+    // 获取管理端配置
+    public function wxLogin()
+    {
+        try {
+            $post = I('post.');
+            if ( empty($post['appid']) ) {
+                E('数据不完整', 40001);
+            }
+            $data = M('','',C('SUPERVISE_DB'))->table('account')->where("wx_appid='{$post['appid']}'")->find();
+
+            if(!empty($data)){
+                $_SESSION['acid'] = $data['id'];
                 self::toJson(['data'=>$data],'成功',200);
             }else{
                 E('失败',40010);
@@ -35,9 +57,10 @@ class LoginController extends AppframeController
                 E('数据不完整', 40001);
             }
             unset($_SESSION['DB_CONFIG']);
-            $data = M('account')->where("user='{$post['user']}'")->find();
+            $data = M('','',C('SUPERVISE_DB'))->table('account')->where("user='{$post['user']}'")->find();
 
             if(!empty($data) && $data['password'] == md5($post['pwd']) ){
+                $_SESSION['acid'] = $data['id'];
                 Communal::setDB($data);
                 E('成功',200);
             }else{

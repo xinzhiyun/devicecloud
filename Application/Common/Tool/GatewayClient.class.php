@@ -22,6 +22,7 @@ class GatewayClient
         '9'=>['ctrolCmd'=>5,'DeviceID'=>'','Pram'=>['mode'=>1,'val'=>0]],//充值100L   "Pram":{"mode":1,”val”:100}}
         '10'=>['ctrolCmd'=>6,'DeviceID'=>'','Pram'=>2], //租赁模式修改  'Pram' 0 买断模式  1 流量 2 时长 3 时长和流量
         '11'=>['ctrolCmd'=>7,'DeviceID'=>'','Pram'=>0], //滤芯模式修改  'Pram' 0 时长 1 流量 2 时长和流量
+        '99'=>['ctrolCmd'=>8,'DeviceID'=>''],
     ];
 
     const HOST = '120.79.230.245';  // 远端服务器
