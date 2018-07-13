@@ -21,7 +21,7 @@ class DeviceController extends AppframeController
             }
 
             if(GatewayClient::bind($post['client_id'], $post['deviceID'])){
-                GatewayClient::action(99, $post['deviceID']);
+                GatewayClient::action(99, $post['deviceID']);//开启设备刷新
                 E('成功',200);
             }else{
                 E('失败',40010);
@@ -57,7 +57,7 @@ class DeviceController extends AppframeController
             if($post['mode']>5){
                 E('数据错误', 40002);
             }
-
+            $data = [];
             if(!empty($post['data'])){
                 $data = explode('_',$post['data']);
             }
@@ -86,34 +86,19 @@ class DeviceController extends AppframeController
         try {
             $post = I('post.');
             // 验证服务器的白名单
-
+            
+            // 验证设备是否属于该客户
 
             if (empty($post['mode']) || empty($post['deviceID']) ) {
                 E('数据不完整', 40001);
             }
 
             $mode = (string)$post['mode'];
-            switch ($mode){
-                case '5':
-                    if(!empty($post['data'])){
-                        $data = explode('_',$post['data']);
-                    }
-                    break;
-                case '8':
-                    $data = $post['data'];
-                    break;
-                case '9':
-                    $data = $post['data'];
-                    break;
-                case '10':
-                    $data = $post['data'];
-                    break;
-                case '11':
-                    $data = $post['data'];
-                    break;
+            if(empty($post['data'])){
+                $post['data']='';
             }
 
-            $res = GatewayClient::action($mode, $post['deviceID'], $data);
+            $res = GatewayClient::action($mode, $post['deviceID'], $post['data']);
             if($res){
                 E('成功',200);
             }else{
@@ -124,48 +109,48 @@ class DeviceController extends AppframeController
         }
     }
 
-    /**
-     * @param $post
-     *  参数 mode
-     *   1   //开机
-     *   2   //关机
-     *   3   //冲洗
-     *   4   //取消冲洗
-     *   5   //复位滤芯  "Pram":[1,2] 滤芯级数
-     *   6   //绑定设备
-     *   7   //解绑设备
-     *   8   //充值100天  "Pram":{"mode":2,”val”:100}
-     *   9   //充值100L   "Pram":{"mode":1,”val”:100}}
-     *   10  //租赁模式修改  'Pram' 0 买断模式  1 流量 2 时长 3 时长和流量
-     *   11  //滤芯模式修改  'Pram' 0 时长 1 流量 2 时长和流量
-     *
-     */
-    public static function action($post=[])
-    {
-//        $mode = (string)$post['mode'];
-//        switch ($mode){
-//            case '5':
-//                $data = $post['data'];
-//                break;
-//            case '8':
-//                $data = $post['data'];
-//                break;
-//            case '9':
-//                $data = $post['data'];
-//                break;
-//            case '10':
-//                $data = $post['data'];
-//                break;
-//            case '11':
-//                $data = $post['data'];
-//                break;
-//        }
+//     /**
+//      * @param $post
+//      *  参数 mode
+//      *   1   //开机
+//      *   2   //关机
+//      *   3   //冲洗
+//      *   4   //取消冲洗
+//      *   5   //复位滤芯  "Pram":[1,2] 滤芯级数
+//      *   6   //绑定设备
+//      *   7   //解绑设备
+//      *   8   //充值100天  "Pram":{"mode":2,”val”:100}
+//      *   9   //充值100L   "Pram":{"mode":1,”val”:100}}
+//      *   10  //租赁模式修改  'Pram' 0 买断模式  1 流量 2 时长 3 时长和流量
+//      *   11  //滤芯模式修改  'Pram' 0 时长 1 流量 2 时长和流量
+//      *
+//      */
+//     public static function action($post=[])
+//     {
+// //        $mode = (string)$post['mode'];
+// //        switch ($mode){
+// //            case '5':
+// //                $data = $post['data'];
+// //                break;
+// //            case '8':
+// //                $data = $post['data'];
+// //                break;
+// //            case '9':
+// //                $data = $post['data'];
+// //                break;
+// //            case '10':
+// //                $data = $post['data'];
+// //                break;
+// //            case '11':
+// //                $data = $post['data'];
+// //                break;
+// //        }
 
-        $data = $post['data'];
+//         $data = $post['data'];
 
-        // 发送
-        return GatewayClient::action($post['mode'], $post['deviceID'], $data);
-    }
+//         // 发送
+//         return GatewayClient::action($post['mode'], $post['deviceID'], $data);
+//     }
 
 
 

@@ -1,0 +1,533 @@
+[ 2018-06-26T10:00:20+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000847s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000547s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000644s ]
+
+[ 2018-06-26T10:01:52+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000509s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000600s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0105s ]
+SQL: SELECT id type_id,`typename` FROM `pub_device_type`  [ RunTime:0.0099s ]
+NOTIC: [8] Undefined index: db_type /www/Gits/devicecloud/ThinkPHP/Library/Think/Db.class.php 第 63 行.
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2018-06-26T10:02:32+08:00 ] ::1 /api/Login/appLogin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000496s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000635s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000848s ]
+SQL: SHOW COLUMNS FROM `account` [ RunTime:0.0021s ]
+SQL: SELECT * FROM `account` WHERE ( user='lzd' ) LIMIT 1   [ RunTime:0.0006s ]
+
+[ 2018-06-26T10:02:51+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000413s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000478s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000563s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0098s ]
+SQL: SELECT id type_id,`typename` FROM `pub_device_type`  [ RunTime:0.0092s ]
+NOTIC: [8] Undefined index: db_type /www/Gits/devicecloud/ThinkPHP/Library/Think/Db.class.php 第 63 行.
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2018-06-26T10:03:15+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000424s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000543s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000633s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0108s ]
+SQL: SELECT id type_id,`typename` FROM `pub_device_type`  [ RunTime:0.0095s ]
+NOTIC: [8] Undefined index: db_type /www/Gits/devicecloud/ThinkPHP/Library/Think/Db.class.php 第 63 行.
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2018-06-26T10:03:28+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000432s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000520s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000614s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0119s ]
+SQL: SELECT id type_id,`typename` FROM `pub_device_type`  [ RunTime:0.0104s ]
+NOTIC: [8] Undefined index: db_type /www/Gits/devicecloud/ThinkPHP/Library/Think/Db.class.php 第 63 行.
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2018-06-26T10:04:03+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000414s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000499s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000582s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0116s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0114s ]
+SQL: SELECT id type_id,`typename` FROM `pub_device_type`  [ RunTime:0.0109s ]
+NOTIC: [8] Undefined index: db_type /www/Gits/devicecloud/ThinkPHP/Library/Think/Db.class.php 第 63 行.
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2018-06-26T10:04:10+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000384s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000523s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000642s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0107s ]
+
+[ 2018-06-26T10:04:20+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000414s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000474s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000561s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.2271s ]
+
+[ 2018-06-26T10:04:31+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000428s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000659s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000753s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0106s ]
+
+[ 2018-06-26T10:04:49+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000676s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000535s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000645s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0142s ]
+SQL: SELECT id type_id,`typename` FROM `pub_device_type`  [ RunTime:0.0106s ]
+
+[ 2018-06-26T10:04:57+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000439s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000700s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000799s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0111s ]
+SQL: SELECT id type_id,`typename` FROM `pub_device_type`  [ RunTime:0.0101s ]
+NOTIC: [8] Undefined index: db_type /www/Gits/devicecloud/ThinkPHP/Library/Think/Db.class.php 第 63 行.
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2018-06-26T10:05:07+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000410s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000495s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000585s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0114s ]
+SQL: SELECT id type_id,`typename` FROM `pub_device_type`  [ RunTime:0.0102s ]
+NOTIC: [8] Undefined index: db_type /www/Gits/devicecloud/ThinkPHP/Library/Think/Db.class.php 第 63 行.
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2018-06-26T10:05:25+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000418s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000593s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000679s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0117s ]
+SQL: SELECT id type_id,`typename` FROM `pub_device_type`  [ RunTime:0.0104s ]
+NOTIC: [8] Undefined index: db_type /www/Gits/devicecloud/ThinkPHP/Library/Think/Db.class.php 第 63 行.
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2018-06-26T10:06:03+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000438s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000498s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000585s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0118s ]
+SQL: SELECT id type_id,`typename` FROM `pub_device_type`  [ RunTime:0.0105s ]
+NOTIC: [8] Undefined index: db_type /www/Gits/devicecloud/ThinkPHP/Library/Think/Db.class.php 第 63 行.
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2018-06-26T10:06:28+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000447s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000503s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000592s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0135s ]
+SQL: SELECT id type_id,`typename` FROM `pub_device_type`  [ RunTime:0.2576s ]
+SQL: SHOW COLUMNS FROM `pub_vendors` [ RunTime:0.0128s ]
+
+[ 2018-06-26T10:09:44+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000391s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000577s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000718s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0132s ]
+SQL: SELECT id type_id,`typename` FROM `pub_device_type`  [ RunTime:0.0108s ]
+NOTIC: [8] Undefined index: db_type /www/Gits/devicecloud/ThinkPHP/Library/Think/Db.class.php 第 63 行.
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2018-06-26T10:09:58+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000347s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000572s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000650s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0122s ]
+SQL: SELECT id type_id,`typename` FROM `pub_device_type`  [ RunTime:0.0134s ]
+NOTIC: [8] Undefined index: db_type /www/Gits/devicecloud/ThinkPHP/Library/Think/Db.class.php 第 63 行.
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2018-06-26T10:10:09+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000474s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000563s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000657s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0118s ]
+SQL: SELECT id type_id,`typename` FROM `pub_device_type`  [ RunTime:0.0105s ]
+NOTIC: [8] Undefined index: db_type /www/Gits/devicecloud/ThinkPHP/Library/Think/Db.class.php 第 63 行.
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2018-06-26T10:10:17+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000393s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000471s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000559s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0122s ]
+SQL: SELECT id type_id,`typename` FROM `pub_device_type`  [ RunTime:0.0094s ]
+
+[ 2018-06-26T10:10:25+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000380s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000457s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000536s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0120s ]
+SQL: SELECT id type_id,`typename` FROM `pub_device_type`  [ RunTime:0.0096s ]
+NOTIC: [8] Undefined index: db_type /www/Gits/devicecloud/ThinkPHP/Library/Think/Db.class.php 第 63 行.
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2018-06-26T10:12:16+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000422s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000493s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000587s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0155s ]
+SQL: SELECT id type_id,`typename` FROM `pub_device_type`  [ RunTime:0.0102s ]
+NOTIC: [8] Undefined index: db_type /www/Gits/devicecloud/ThinkPHP/Library/Think/Db.class.php 第 63 行.
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2018-06-26T10:12:35+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000421s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000498s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000583s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0121s ]
+SQL: SELECT id type_id,`typename` FROM `pub_device_type`  [ RunTime:0.0277s ]
+NOTIC: [8] Undefined index: db_type /www/Gits/devicecloud/ThinkPHP/Library/Think/Db.class.php 第 63 行.
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2018-06-26T10:12:59+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000420s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000522s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000747s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0435s ]
+SQL: SELECT id type_id,`typename` FROM `pub_device_type`  [ RunTime:0.0101s ]
+SQL: SHOW COLUMNS FROM `pub_vendors` [ RunTime:0.0105s ]
+SQL: SELECT id vid,`name` FROM `pub_vendors`  [ RunTime:0.0101s ]
+
+[ 2018-06-26T10:13:17+08:00 ] ::1 /api/device/pullDevice
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000068s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000487s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000548s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000630s ]
+SQL: SHOW COLUMNS FROM `devices` [ RunTime:0.0019s ]
+SQL: SELECT * FROM `devices` WHERE ( deviceid='999999999999999' ) LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: db_type /www/Gits/devicecloud/ThinkPHP/Library/Think/Db.class.php 第 63 行.
+
+[ 2018-06-26T10:14:15+08:00 ] ::1 /api/device/pullDevice
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000080s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000597s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000552s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000651s ]
+SQL: SHOW COLUMNS FROM `devices` [ RunTime:0.0019s ]
+SQL: SELECT * FROM `devices` WHERE ( deviceid='999999999999999' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `pub_devices` [ RunTime:0.0133s ]
+SQL: SELECT * FROM `pub_devices` WHERE ( device_code='999999999999999' ) LIMIT 1   [ RunTime:0.0508s ]
+SQL: UPDATE `pub_devices` SET `type_id`='2',`addtime`='1529979255' WHERE ( id=191 ) [ RunTime:0.0136s ]
+
+[ 2018-06-26T10:15:00+08:00 ] ::1 /api/device/pullDevice
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000434s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000538s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000613s ]
+SQL: SHOW COLUMNS FROM `devices` [ RunTime:0.0018s ]
+SQL: SELECT * FROM `devices` WHERE ( deviceid='999999999999999' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `pub_devices` [ RunTime:0.0104s ]
+SQL: SELECT * FROM `pub_devices` WHERE ( device_code='999999999999999' ) LIMIT 1   [ RunTime:0.0178s ]
+SQL: SHOW COLUMNS FROM `pub_binding` [ RunTime:0.0131s ]
+SQL: SELECT * FROM `pub_binding` WHERE ( did=191 ) LIMIT 1   [ RunTime:0.0098s ]
+SQL: UPDATE `pub_binding` SET `vid`='2',`addtime`='1529979300' WHERE ( did=191 ) [ RunTime:0.0103s ]
+SQL: UPDATE `pub_devices` SET `binding_statu`='1',`addtime`='1529979300' WHERE ( id=191 ) [ RunTime:0.0129s ]
+
+[ 2018-06-26T10:15:08+08:00 ] ::1 /api/device/pullDevice
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000384s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000716s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000822s ]
+SQL: SHOW COLUMNS FROM `devices` [ RunTime:0.0019s ]
+SQL: SELECT * FROM `devices` WHERE ( deviceid='999999999999999' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `pub_devices` [ RunTime:0.0111s ]
+SQL: SELECT * FROM `pub_devices` WHERE ( device_code='999999999999999' ) LIMIT 1   [ RunTime:0.0099s ]
+SQL: SHOW COLUMNS FROM `pub_binding` [ RunTime:0.0128s ]
+SQL: SELECT * FROM `pub_binding` WHERE ( did=191 ) LIMIT 1   [ RunTime:0.0110s ]
+SQL: UPDATE `pub_binding` SET `vid`='3',`addtime`='1529979308' WHERE ( did=191 ) [ RunTime:0.0103s ]
+SQL: UPDATE `pub_devices` SET `binding_statu`='1',`addtime`='1529979308' WHERE ( id=191 ) [ RunTime:0.0301s ]
+
+[ 2018-06-26T10:16:51+08:00 ] ::1 /api/Login/appLogin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000657s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000662s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000900s ]
+SQL: SHOW COLUMNS FROM `account` [ RunTime:0.0022s ]
+SQL: SELECT * FROM `account` WHERE ( user='lzd' ) LIMIT 1   [ RunTime:0.0003s ]
+
+[ 2018-06-26T10:18:29+08:00 ] ::1 /api/Login/appLogin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000052s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000899s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000654s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000765s ]
+SQL: SHOW COLUMNS FROM `account` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `account` WHERE ( user='lzd' ) LIMIT 1   [ RunTime:0.0004s ]
+
+[ 2018-06-26T10:19:38+08:00 ] ::1 /api/device/pullDevice
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000415s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000479s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000565s ]
+NOTIC: [8] Undefined index: acid /www/Gits/devicecloud/Application/Api/Controller/DeviceController.class.php 第 163 行.
+SQL: SHOW COLUMNS FROM `devices` [ RunTime:0.0023s ]
+SQL: SELECT * FROM `devices` WHERE ( deviceid='999999999999999' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `pub_devices` [ RunTime:0.0152s ]
+SQL: SELECT * FROM `pub_devices` WHERE ( device_code='999999999999999' ) LIMIT 1   [ RunTime:0.0143s ]
+SQL: SHOW COLUMNS FROM `pub_binding` [ RunTime:0.0165s ]
+SQL: SELECT * FROM `pub_binding` WHERE ( did=191 ) LIMIT 1   [ RunTime:0.0138s ]
+SQL: UPDATE `pub_binding` SET `vid`='3',`addtime`='1529979578' WHERE ( did=191 ) [ RunTime:0.1120s ]
+SQL: UPDATE `pub_devices` SET `binding_statu`='1',`addtime`='1529979578' WHERE ( id=191 ) [ RunTime:0.0140s ]
+
+[ 2018-06-26T10:20:11+08:00 ] ::1 /api/device/pullDevice
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000390s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000518s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000657s ]
+SQL: SHOW COLUMNS FROM `devices` [ RunTime:0.0022s ]
+SQL: SELECT * FROM `devices` WHERE ( deviceid='999999999999999' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `pub_devices` [ RunTime:0.0112s ]
+SQL: SELECT * FROM `pub_devices` WHERE ( device_code='999999999999999' ) LIMIT 1   [ RunTime:0.0104s ]
+SQL: SHOW COLUMNS FROM `pub_binding` [ RunTime:0.5372s ]
+SQL: SELECT * FROM `pub_binding` WHERE ( did=191 ) LIMIT 1   [ RunTime:0.0180s ]
+SQL: UPDATE `pub_binding` SET `vid`='3',`addtime`='1529979611' WHERE ( did=191 ) [ RunTime:0.0098s ]
+SQL: UPDATE `pub_devices` SET `binding_statu`='1',`addtime`='1529979611' WHERE ( id=191 ) [ RunTime:0.0174s ]
+
+[ 2018-06-26T10:20:31+08:00 ] ::1 /api/device/pullDevice
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000374s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000745s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000952s ]
+
+[ 2018-06-26T10:20:46+08:00 ] ::1 /api/device/pullDevice
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000403s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000634s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000756s ]
+
+[ 2018-06-26T10:20:53+08:00 ] ::1 /api/Login/appLogin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000438s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000480s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000567s ]
+SQL: SHOW COLUMNS FROM `account` [ RunTime:0.0029s ]
+SQL: SELECT * FROM `account` WHERE ( user='lzd' ) LIMIT 1   [ RunTime:0.0003s ]
+
+[ 2018-06-26T10:21:15+08:00 ] ::1 /api/Login/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000058s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000723s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000571s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000703s ]
+ERR: 1146:Table 'lzd.pub_account' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pub_account`
+
+[ 2018-06-26T10:21:59+08:00 ] ::1 /api/Login/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000419s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000618s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000766s ]
+ERR: 1146:Table 'devicecloud.pub_account' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pub_account`
+
+[ 2018-06-26T10:22:39+08:00 ] ::1 /api/Login/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000402s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000656s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000791s ]
+ERR: 1103:Incorrect table name ''
+ [ SQL语句 ] : SHOW COLUMNS FROM ``
+
+[ 2018-06-26T10:22:49+08:00 ] ::1 /api/Login/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000391s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000488s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000588s ]
+ERR: 1146:Table 'devicecloud.pub_account' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pub_account`
+
+[ 2018-06-26T10:23:26+08:00 ] ::1 /api/Login/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000410s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000495s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000591s ]
+SQL: SHOW COLUMNS FROM `account` [ RunTime:0.0018s ]
+SQL: SELECT * FROM `account` WHERE ( user='lzd' ) LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2018-06-26T10:24:21+08:00 ] ::1 /api/device/pullDevice
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000374s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000433s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000515s ]
+SQL: SHOW COLUMNS FROM `devices` [ RunTime:0.0022s ]
+SQL: SELECT * FROM `devices` WHERE ( deviceid='999999999999999' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `pub_devices` [ RunTime:0.0119s ]
+SQL: SELECT * FROM `pub_devices` WHERE ( device_code='999999999999999' ) LIMIT 1   [ RunTime:0.0112s ]
+SQL: SHOW COLUMNS FROM `pub_binding` [ RunTime:0.0111s ]
+SQL: SELECT * FROM `pub_binding` WHERE ( did=191 ) LIMIT 1   [ RunTime:0.0413s ]
+SQL: UPDATE `pub_binding` SET `vid`='3',`addtime`='1529979861' WHERE ( did=191 ) [ RunTime:0.0104s ]
+SQL: UPDATE `pub_devices` SET `binding_statu`='1',`addtime`='1529979861' WHERE ( id=191 ) [ RunTime:0.0128s ]
+
+[ 2018-06-26T10:26:41+08:00 ] ::1 /api/device/getDeviceDataList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000579s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000603s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000707s ]
+SQL: SHOW COLUMNS FROM `pub_device_type` [ RunTime:0.0119s ]
+SQL: SELECT id type_id,`typename` FROM `pub_device_type`  [ RunTime:0.0103s ]
+SQL: SHOW COLUMNS FROM `pub_vendors` [ RunTime:0.0131s ]
+SQL: SELECT id vid,`name` FROM `pub_vendors`  [ RunTime:0.0126s ]
+
+[ 2018-06-26T10:26:44+08:00 ] ::1 /api/device/pullDevice
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000563s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000477s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000571s ]
+SQL: SHOW COLUMNS FROM `devices` [ RunTime:0.0018s ]
+SQL: SELECT * FROM `devices` WHERE ( deviceid='999999999999999' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: UPDATE `devices` SET `addtime`='1529980004',`acid`='5' WHERE ( id=5 ) [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pub_devices` [ RunTime:0.0123s ]
+SQL: SELECT * FROM `pub_devices` WHERE ( device_code='999999999999999' ) LIMIT 1   [ RunTime:0.0113s ]
+SQL: SHOW COLUMNS FROM `pub_binding` [ RunTime:0.0104s ]
+SQL: SELECT * FROM `pub_binding` WHERE ( did=191 ) LIMIT 1   [ RunTime:0.2328s ]
+SQL: UPDATE `pub_binding` SET `vid`='3',`addtime`='1529980004' WHERE ( did=191 ) [ RunTime:0.0099s ]
+SQL: UPDATE `pub_devices` SET `binding_statu`='1',`addtime`='1529980004' WHERE ( id=191 ) [ RunTime:0.0120s ]
+
+[ 2018-06-26T10:34:45+08:00 ] ::1 /api/device/pullDevice
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000459s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000454s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000543s ]
+SQL: SHOW COLUMNS FROM `devices` [ RunTime:0.0019s ]
+SQL: SELECT * FROM `devices` WHERE ( deviceid='999999999999999' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: UPDATE `devices` SET `addtime`='1529980485',`acid`='5' WHERE ( id=5 ) [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `pub_devices` [ RunTime:0.0119s ]
+SQL: SELECT * FROM `pub_devices` WHERE ( device_code='999999999999999' ) LIMIT 1   [ RunTime:0.0125s ]
+SQL: SHOW COLUMNS FROM `pub_binding` [ RunTime:0.0107s ]
+SQL: SELECT * FROM `pub_binding` WHERE ( did=191 ) LIMIT 1   [ RunTime:0.0107s ]
+SQL: UPDATE `pub_binding` SET `vid`='3',`addtime`='1529980485' WHERE ( did=191 ) [ RunTime:0.0102s ]
+SQL: UPDATE `pub_devices` SET `binding_statu`='1',`addtime`='1529980485' WHERE ( id=191 ) [ RunTime:0.0147s ]
+
+[ 2018-06-26T10:43:44+08:00 ] ::1 /api/device/pullDevice
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000372s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000419s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000495s ]
+SQL: SHOW COLUMNS FROM `devices` [ RunTime:0.0019s ]
+SQL: SELECT * FROM `devices` WHERE ( deviceid='999999999999999' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: UPDATE `devices` SET `addtime`='1529981023',`acid`='5' WHERE ( id=5 ) [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `pub_devices` [ RunTime:0.0105s ]
+SQL: SELECT * FROM `pub_devices` WHERE ( device_code='999999999999999' ) LIMIT 1   [ RunTime:0.0102s ]
+SQL: SHOW COLUMNS FROM `pub_binding` [ RunTime:0.0312s ]
+SQL: SELECT * FROM `pub_binding` WHERE ( did=191 ) LIMIT 1   [ RunTime:0.0112s ]
+SQL: UPDATE `pub_binding` SET `vid`='3',`addtime`='1529981024' WHERE ( did=191 ) [ RunTime:0.0120s ]
+SQL: UPDATE `pub_devices` SET `binding_statu`='1',`addtime`='1529981024' WHERE ( id=191 ) [ RunTime:0.0130s ]
+

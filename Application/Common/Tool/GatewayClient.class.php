@@ -22,7 +22,7 @@ class GatewayClient
         '9'=>['ctrolCmd'=>5,'DeviceID'=>'','Pram'=>['mode'=>1,'val'=>0]],//充值100L   "Pram":{"mode":1,”val”:100}}
         '10'=>['ctrolCmd'=>6,'DeviceID'=>'','Pram'=>2], //租赁模式修改  'Pram' 0 买断模式  1 流量 2 时长 3 时长和流量
         '11'=>['ctrolCmd'=>7,'DeviceID'=>'','Pram'=>0], //滤芯模式修改  'Pram' 0 时长 1 流量 2 时长和流量
-        '99'=>['ctrolCmd'=>8,'DeviceID'=>''],
+        '99'=>['ctrolCmd'=>8,'DeviceID'=>''],//数据更新接口(开始进行循环设备查询)
     ];
 
     const HOST = '120.79.230.245';  // 远端服务器
@@ -51,11 +51,13 @@ class GatewayClient
         $mode = (string)$mode;
         switch ($mode){
             case '5':
-            case '8':
-            case '9':
             case '10':
             case '11':
                 $message['Pram'] = $data;
+                break;
+            case '8':
+            case '9':
+                 $message['Pram']['val'] = $data;
                 break;
         }
         return self::sendMsg(json_encode($message) );
@@ -78,6 +80,7 @@ class GatewayClient
              //echo "接收服务器回传信息成功！\n";
              //echo "接受的内容为:", $out;
             $res = json_decode($out);
+            Log::write($res,'远端服务器返回');
             if(!empty($res->reqCode)){
                 return true;
             }else{
