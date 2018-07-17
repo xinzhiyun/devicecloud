@@ -80,7 +80,7 @@ class GatewayClient
              //echo "接收服务器回传信息成功！\n";
              //echo "接受的内容为:", $out;
             $res = json_decode($out);
-            Log::write($res,'远端服务器返回');
+            //Log::write($res,'远端服务器返回');
             if(!empty($res->reqCode)){
                 return true;
             }else{

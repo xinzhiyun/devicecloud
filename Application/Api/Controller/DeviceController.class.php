@@ -6,6 +6,12 @@ use Think\Log;
 
 class DeviceController extends AppframeController
 {
+    private static $devices_model;
+    public function __construct()
+    {
+        self::$devices_model = M('devices');
+        parent::__construct();
+    }
 
     // 页面控制 socket绑定
     public function bind()
@@ -33,18 +39,6 @@ class DeviceController extends AppframeController
 
     /**
      * web端 设备操作
-     *   *  参数 mode
-     *   1   //开机
-     *   2   //关机
-     *   3   //冲洗
-     *   4   //取消冲洗
-     *   5   //复位滤芯  "Pram":[1,2] 滤芯级数
-     *   6   //绑定设备
-     *   7   //解绑设备
-     *   8   //充值100天  "Pram":{"mode":2,”val”:100}
-     *   9   //充值100L   "Pram":{"mode":1,”val”:100}}
-     *   10  //租赁模式修改  'Pram' 0 买断模式  1 流量 2 时长 3 时长和流量
-     *   11  //滤芯模式修改  'Pram' 0 时长 1 流量 2 时长和流量
      */
     public function deviceAction()
     {
@@ -108,53 +102,6 @@ class DeviceController extends AppframeController
             self::toJson($e);
         }
     }
-
-//     /**
-//      * @param $post
-//      *  参数 mode
-//      *   1   //开机
-//      *   2   //关机
-//      *   3   //冲洗
-//      *   4   //取消冲洗
-//      *   5   //复位滤芯  "Pram":[1,2] 滤芯级数
-//      *   6   //绑定设备
-//      *   7   //解绑设备
-//      *   8   //充值100天  "Pram":{"mode":2,”val”:100}
-//      *   9   //充值100L   "Pram":{"mode":1,”val”:100}}
-//      *   10  //租赁模式修改  'Pram' 0 买断模式  1 流量 2 时长 3 时长和流量
-//      *   11  //滤芯模式修改  'Pram' 0 时长 1 流量 2 时长和流量
-//      *
-//      */
-//     public static function action($post=[])
-//     {
-// //        $mode = (string)$post['mode'];
-// //        switch ($mode){
-// //            case '5':
-// //                $data = $post['data'];
-// //                break;
-// //            case '8':
-// //                $data = $post['data'];
-// //                break;
-// //            case '9':
-// //                $data = $post['data'];
-// //                break;
-// //            case '10':
-// //                $data = $post['data'];
-// //                break;
-// //            case '11':
-// //                $data = $post['data'];
-// //                break;
-// //        }
-
-//         $data = $post['data'];
-
-//         // 发送
-//         return GatewayClient::action($post['mode'], $post['deviceID'], $data);
-//     }
-
-
-
-
 
     // -------------------------------------------------------------------------------------------------
     // ------------------------------------------APP 设备的操作------------------------------------------
@@ -257,4 +204,179 @@ class DeviceController extends AppframeController
         }
     }
 
+
+    // -------------------------------------------------------------------------------------------------
+    // ------------------------------------------设备云 云端接口------------------------------------------
+    // -------------------------------------------------------------------------------------------------
+
+    // 检查数据来源
+    private static function checkIP(){
+
+
+    }
+
+    // 更新的字段
+    private static $statuField = [
+        // 小写         => 数据库字段
+        'rawtds'        => 'RawTDS',
+        'puretds'       => 'PureTDS',
+    ];
+
+    /**
+     * 更新devicecloud表devices(设备云API)
+     */
+    public function updataDevicesStatu()
+    {
+        self::checkIP();
+        try {
+            $post = I('post.');
+            if (empty($post['deviceID']) || empty($post['data'])) {
+                E('数据不完整', 40001);
+            } else {
+                $map['deviceid'] = $post['deviceID'];
+            }
+
+            $DeviceStatuData = self::getJsonArray($post['data']);
+
+            $newDeviceStatuData = [];
+            // 过滤数据
+            foreach ($DeviceStatuData as $key=>$val){
+                $key = strtolower($key);
+                if(isset(self::$statuField[$key])){
+                    $newDeviceStatuData[ self::$statuField[$key] ] = $val;
+                }
+            }
+
+            if( empty(self::getDeviceStatu($map)) ){
+                $newDeviceStatuData['DeviceID'] = $post['deviceID'];
+                $res = self::addDeviceStatu($newDeviceStatuData);
+            }else{
+                $res = self::saveDeviceStatu($map, $newDeviceStatuData);
+            }
+
+            if($res){
+                E('更新成功!',200);
+            }else{
+                E('更新失败!',40010);
+            }
+        } catch (\Exception $e) {
+            $this->toJson($e);
+        }
+    }
+
+    /**
+     * 获取devicecloud表devices(设备云API)
+     */
+    public function getDeviceStatus()
+    {
+        try {
+            $post = I('post.');
+            if ( empty($post['deviceID']) ) {
+                E('数据不完整', 201);
+            } else {
+                $map['deviceid'] = $post['deviceID'];
+            }
+
+            $fields = self::getJsonArray($post['fields']);
+            $newDeviceStatuData = [];
+
+            $field = [];
+            // 过滤数据
+            foreach ($fields as $val){
+                $key = strtolower($val);
+                if(isset(self::$statuField[$key])){
+                    $field[] = self::$statuField[$key];
+                }
+            }
+            $field  = implode(',',$field);
+
+            $data = self::$devices_model->where($map)->field($field)->find();
+
+            if(empty($data)){ // 为空创建数据
+
+                $newDeviceStatuData = [
+                    'deviceid'  => $post['deviceID'],
+                ];
+                $res = self::addDeviceStatu($newDeviceStatuData);
+                $this->toJson($res,'创建成功',201);
+            }
+
+            foreach ($data as $key=>$val){
+                $key = strtolower($key);
+                if(isset(self::$statuField[$key])){
+                    $resData[ self::$statuField[$key] ] = $val;
+                }
+            }
+
+            $this->toJson($resData,'获取成功');
+
+        } catch (\Exception $e) {
+            $this->toJson($e);
+        }
+    }
+
+    /**
+     * 查询devicecloud的设备信息
+     */
+    public function getDevicecloudDevice()
+    {
+        try {
+            $post = I('get.');
+            if ( empty($post['deviceID']) ) {
+                E('数据不完整', 201);
+            } else {
+                $map['deviceid'] = $post['deviceID'];
+            }
+
+
+            $data = self::$devices_model->where($map)->find();
+
+            if(!empty($data['acid'])){
+                $account = M('account')->where("id='{$data['acid']}'")->find();
+                if(empty($account['domain'])){
+                    E('该设备未绑定客户未设置参数',40003);
+                }else{
+                    $this->toJson(['domain'=>$account['domain'], 'type_id'=>1],'获取成功!',200);
+                }
+            }else{
+                E('该设备未绑定客户!',40002);
+            }
+
+        } catch (\Exception $e) {
+            $this->toJson($e);
+        }
+    }
+
+    // 解析json 转数据
+    public static function getJsonArray($data)
+    {
+        $json = htmlspecialchars_decode($data);
+        return json_decode($json,true);
+    }
+    /**
+     * 添加设备信息
+     */
+    private static function addDeviceStatu( $data )
+    {
+        $data['addtime'] = time();
+        return self::$devices_model->add($data );
+    }
+    /**
+     * 修改设备状态信息
+     */
+    private static function saveDeviceStatu($map, $data )
+    {
+        if(empty($map)){
+            return false;
+        }
+        $data['updatetime'] = time();
+        return self::$devices_model->where($map)->save($data );
+    }
+    /**
+     * 获取设备状态的信息
+     */
+    private static function getDeviceStatu($map)
+    {
+        return  self::$devices_model->where($map )->find();
+    }
 }
