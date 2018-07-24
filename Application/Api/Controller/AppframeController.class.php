@@ -14,7 +14,7 @@ class AppframeController extends Controller {
     {
         if(is_array($e)){
             $data=array_merge($e,['status'=>$status,'msg'=>$msg]);
-        }else{
+        }elseif(is_object($e)){
             if(!empty($msg)){ // jsonp
                 $jsoncallback = $msg;
             }
@@ -22,6 +22,8 @@ class AppframeController extends Controller {
                 'status' => $e->getCode(),
                 'msg' =>   $e->getMessage(),
             ];
+        }else{
+            $data = $e;
         }
 
 

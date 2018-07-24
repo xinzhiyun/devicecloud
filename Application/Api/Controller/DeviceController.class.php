@@ -301,7 +301,7 @@ class DeviceController extends AppframeController
                 ];
                 $res = self::addDeviceStatu($newDeviceStatuData);
 
-                $this->toJson($res,'创建成功',201);
+                $this->toJson(['id'=>$res],'创建成功',201);
             }
 
             foreach ($data as $key=>$val){
