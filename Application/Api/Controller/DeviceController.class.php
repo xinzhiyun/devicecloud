@@ -220,6 +220,8 @@ class DeviceController extends AppframeController
         // 小写         => 数据库字段
         'rawtds'        => 'RawTDS',
         'puretds'       => 'PureTDS',
+        'type_id'       => 'typeid',
+        'sumtime'       => 'sumtime'
     ];
 
     /**
@@ -298,6 +300,7 @@ class DeviceController extends AppframeController
                     'deviceid'  => $post['deviceID'],
                 ];
                 $res = self::addDeviceStatu($newDeviceStatuData);
+
                 $this->toJson($res,'创建成功',201);
             }
 
@@ -308,7 +311,7 @@ class DeviceController extends AppframeController
                 }
             }
 
-            $this->toJson($resData,'获取成功');
+            $this->toJson($resData,'获取成功',200);
 
         } catch (\Exception $e) {
             $this->toJson($e);
