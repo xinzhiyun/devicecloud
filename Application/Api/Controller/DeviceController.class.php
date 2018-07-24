@@ -254,11 +254,12 @@ class DeviceController extends AppframeController
                 $res = self::addDeviceStatu($newDeviceStatuData);
             }else{
                 if($DeviceStatuData['sumtime']){
-//                    self::updateSumtime($post['deviceID'],$DeviceStatuData['sumtime']);
                     $res = self::$devices_model->where("typeid='{$post['deviceID']}'")->setInc($DeviceStatuData['sumtime']);
-                }else{
-                    $res = self::saveDeviceStatu($map, $newDeviceStatuData);
+                    unset($newDeviceStatuData['sumtime']);
                 }
+                
+
+                $res = self::saveDeviceStatu($map, $newDeviceStatuData);
 
 
 
