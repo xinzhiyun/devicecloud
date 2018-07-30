@@ -25,8 +25,8 @@ class GatewayClient
         '99'=>['ctrolCmd'=>8,'DeviceID'=>''],//数据更新接口(开始进行循环设备查询)
     ];
 
-   // const HOST = '120.79.230.245';  // 远端服务器
-    const HOST = 't1.yuemai168.com';  // 远端测试服务器
+    const HOST = '120.79.230.245';  // 远端服务器
+    //const HOST = 't1.yuemai168.com';  // 远端测试服务器
     const PORT = '9980';
 
     /**
