@@ -25,8 +25,8 @@ class GatewayClient
         '99'=>['ctrolCmd'=>8,'DeviceID'=>''],//数据更新接口(开始进行循环设备查询)
     ];
 
-    //const HOST = '120.79.230.245';  // 远端服务器
-    const HOST = '192.168.1.250';  // 远端服务器
+   // const HOST = '120.79.230.245';  // 远端服务器
+    const HOST = 't1.yuemai168.com';  // 远端测试服务器
     const PORT = '9980';
 
     /**
@@ -61,6 +61,7 @@ class GatewayClient
                  $message['Pram']['val'] = $data;
                 break;
         }
+        Log::write(json_encode($message),'设备返回');
         return self::sendMsg(json_encode($message) );
     }
 
@@ -81,7 +82,7 @@ class GatewayClient
              //echo "接收服务器回传信息成功！\n";
              //echo "接受的内容为:", $out;
             $res = json_decode($out);
-            //Log::write($res,'远端服务器返回');
+            Log::write($res,'远端服务器返回');
             if(!empty($res->reqCode)){
                 return true;
             }else{
