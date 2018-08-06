@@ -348,7 +348,7 @@ class DeviceController extends AppframeController
                 if(empty($account['domain'])){
                     E('该设备未绑定客户未设置参数',40003);
                 }else{
-                    $this->toJson(['domain'=>$account['domain'], 'type_id'=>$data['typeid'],'sumtime'=>$data['sumtime'],'wx_appid'=>$data['wx_appid'],'wx_appsecret'=>$data['wx_appsecret'],'wx_original'=>$data['wx_original'],],'获取成功!',200);
+                    $this->toJson(['domain'=>$account['domain'], 'type_id'=>$data['typeid'],'sumtime'=>$data['sumtime'],'wx_appid'=>$data['wx_appid'],'wx_appsecret'=>$data['wx_appsecret'],'wx_original'=>$data['wx_original'],'d_type'=>$data['d_type']],'获取成功!',200);
                 }
             }else{
                 E('该设备未绑定客户!',40002);
