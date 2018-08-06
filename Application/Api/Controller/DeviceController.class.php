@@ -302,7 +302,7 @@ class DeviceController extends AppframeController
             $field  = implode(',',$field);
 
             $data = self::$devices_model->where($map)->field($field)->find();
-
+//            var_dump($data);die;
             if(empty($data)){ // 为空创建数据
 
                 $newDeviceStatuData = [
@@ -348,7 +348,7 @@ class DeviceController extends AppframeController
                 if(empty($account['domain'])){
                     E('该设备未绑定客户未设置参数',40003);
                 }else{
-                    $this->toJson(['domain'=>$account['domain'], 'type_id'=>$data['typeid'],'sumtime'=>$data['sumtime']],'获取成功!',200);
+                    $this->toJson(['domain'=>$account['domain'], 'type_id'=>$data['typeid'],'sumtime'=>$data['sumtime'],'wx_appid'=>$data['wx_appid'],'wx_appsecret'=>$data['wx_appsecret'],'wx_original'=>$data['wx_original'],],'获取成功!',200);
                 }
             }else{
                 E('该设备未绑定客户!',40002);
