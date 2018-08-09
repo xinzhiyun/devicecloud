@@ -9,6 +9,7 @@ class DeviceController extends AppframeController
     private static $devices_model;
     public function __construct()
     {
+        unset($_SESSION['DB_CONFIG']);
         self::$devices_model = M('devices');
         parent::__construct();
     }
@@ -110,82 +111,196 @@ class DeviceController extends AppframeController
     // 获取登陆用户的产品型号 和 经销商
     public function getDeviceDataList()
     {
+try {
+            $post = I('post.');
 
-        $data['typelist'] = M('DeviceType')->field('id type_id,typename')->select();
+            if (empty($post['model_id']) ) {
+                E('数据不完整', 40001);
+            }
+           
 
-        $data['vendorslist'] = M('Vendors')->field('id vid,name')->select();
+//            if(empty($_SESSION['acid'])){
+//                E('请登录!', 40003);
+//            }
+            Log::write(json_encode($post),'查询列表进来');
+            $where['model_id'] = $post['model_id'];
+            $where['auid'] = 3;
+            $data = M('DeviceType')->where($where)->field('product_id,type_name,id')->select();
 
-        self::toJson($data,'获取成功',200);
+             self::toJson($data,'获取成功',200);
+
+           
+        } catch (\Exception $e) {
+            toJson($e);
+        }
+            //获取
+
     }
-
+   
 
     // 设备入库及更新
     public function pullDevice()
     {
+       
         try {
+
+        $_SESSION['acid'] = 3;
+        $_SESSION['adminuser']['appid'] =' wx57d57fb99d6d838d';
+        $_SESSION['adminuser']['appsecret']  = 'ec36152955830ec4191507724f3377a6';
+        unset($_SESSION['DB_CONFIG']);
+        
+       
             $post = I('post.');
-
-            if (empty($post['deviceID']) ) {
-                E('数据不完整', 40001);
-            }
-            $post['deviceID'] = trim($post['deviceID']);
-
-            if(empty($_SESSION['acid'])){
-                E('请登录!', 40003);
-            }
-            Log::write(json_encode($post),'设备入库');
-
-            // 主库
-            $DevicesCloud = D('DevicesCloud');
-
-            $device_could_info = $DevicesCloud->where("deviceid='{$post['deviceID']}'")->find();
-            if(empty($device_could_info )){
-                $res = $DevicesCloud->add( ['deviceid'=>$post['deviceID'], 'addtime'=>time(), 'acid'=>$_SESSION['acid']] );
-                if(empty($res)) E('入库失败!',40004);
+             $type = $post ['type'];
+             if($type==2){
+                 $device = M('devices');
+                 //var_dump($device);die;
+                 //蓝牙入库
+                 $data['mac'] = $mac = str_replace(":","",$_POST['mac']);
+                $data['product_id'] = $product_id = $_POST['product_id'];
+                $info =  M('devices')->where("mac='{$mac}'"." AND product_id='{$product_id}'")->find();
+                        if ($info) {
+                //存在返回信息
+                //$productid = M('product')->where('id='.$info['product_id'])->find()['product_id'];
+                $this->ajaxReturn(array('msg'=>'该设备已经录入系统','code'=>'201','productid'=>$_POST['product_id']));
             }else{
-                $res = $DevicesCloud->where('id='.$device_could_info['id'])->save( [ 'addtime'=>time(), 'acid'=>$_SESSION['acid']] );
-                if(empty($res)) E('入库更新失败!',40005);
-            }
+                
+                    //不存在则入库
+                    $data['auid'] =$_SESSION['acid'];
+                    $product_id  = $_POST['product_id'];
 
-            // 客户库
-            $device_model = M('devices',$_SESSION['DB_CONFIG']['DB_PREFIX']);
-            $device_info = $device_model->where("device_code='{$post['deviceID']}'")->find();
+                    $data['lasttime'] = time();
+                    $data['inittime'] = 7200 * 24;
+                    $data['d_type'] = 2;
+                    //根据登录的经销商获取其对用的设备编码
+                    $appId = $_SESSION['adminuser']['appid'];
+                    $appSecret = $_SESSION['adminuser']['appsecret'];
 
-            if( !empty($device_info) ){
-                if(!empty($post['type_id'])){
-                    $saveData['type_id'] = $post['type_id'];
-                }
-                if(!empty($post['vid'])){
-                    if( $this->bindDevice($device_info['id'], $post['vid']) ){
-                        $saveData['binding_statu'] = 1;
+                    // 实例化微信JSSDK类对象  需要传对用的经销商的Appid跟appSecret
+                    $wxJSSDK = new \Org\Util\WeixinJssdk($appId, $appSecret);
+                    // 调用获取公众号的全局唯一接口调用凭据
+                    $access_token = $wxJSSDK->getAccessToken();
+                    
+                    //调用微信接口自动生成设备号
+                    $url = "https://api.weixin.qq.com/device/getqrcode?access_token=".$access_token."&product_id=".$product_id;
+
+
+                    //模拟url请求
+                    $result = $this->https_request($url);
+
+                    
+                    //验证是否请求成功
+                    if (json_decode($result,true)['base_resp']['errmsg'] == "ok" ) {
+                        $deviceid = $data['deviceid'] = json_decode($result,true)['deviceid'];
+                    } else {
+                        $this->ajaxReturn(array('msg'=>'自动生成设备id有问题','code'=>'201'));
                     }
-                }
-                $saveData['addtime'] = time();
 
-                $res =  $device_model->where('id='.$device_info['id'])->save($saveData);
+                    //将蓝牙信息跟设备号同步到微信服务器
+                    $url1 = "https://api.weixin.qq.com/device/authorize_device?access_token=".$access_token;
+                    $body = '{
+                        "device_num": "1", 
+                        "device_list": [
+                            {
+                                "id": "'.$deviceid.'", 
+                                "mac": "'.$mac.'", 
+                                "connect_protocol": "3", 
+                                "auth_key": "", 
+                                "close_strategy": "1", 
+                                "conn_strategy": "1", 
+                                "crypt_method": "0", 
+                                "auth_ver": "0", 
+                                "manu_mac_pos": "-1", 
+                                "ser_mac_pos": "-2", 
+                                "ble_simple_protocol": "0"
+                            }
+                        ], 
+                        "op_type": "1", 
+                    }';
 
-            } else {
-                $addData['device_code'] = $post['deviceID'];
-                $addData['addtime']     = time();
+                    //模拟url请求
+                    $res = $this->https_request($url1,$body);
 
-                if(!empty($post['type_id'])){
-                    $addData['type_id'] = $post['type_id'];
-                }
-                $res = $device_model->add($addData);
+                    //验证是否写入微信服务器
+                    if (json_decode($res,true)['resp'][0]['errmsg'] == "ok" ) {
+                        //写入则入库
+                        $deviceInfo = $device->add($data);
 
-                if(!empty($post['vid'])){
-                    if( $this->bindDevice($res, $post['vid']) ){
-                        $saveData['binding_statu'] = 1;
-                        $device_model->where('id='.$res)->save($saveData);
+                        if ($deviceInfo) {
+                            $this->ajaxReturn(array('msg'=>'设备入库成功','code'=>'200'));
+                        } else {
+                            $this->ajaxReturn(array('msg'=>'设备入库失败','code'=>'201'));
+                        }
+                    } else {
+                        $this->ajaxReturn(array('msg'=>'mac地址写入微信服务器失败','code'=>'201'));
                     }
-                }
             }
+             }else if($type==1){
+                 
+                 if (empty($post['deviceID']) ) {
+                     E('数据不完整', 40001);
+                 }
+                 $post['deviceID'] = trim($post['deviceID']);
 
-            if($res){
-                E('成功',200);
-            }else{
-                E('失败',40010);
-            }
+                 if(empty($_SESSION['acid'])){
+                     E('请登录!', 40003);
+                 }
+                 Log::write(json_encode($post),'设备入库');
+
+                 // 主库
+                 $DevicesCloud = D('DevicesCloud');
+
+                 $device_could_info = $DevicesCloud->where("deviceid='{$post['deviceID']}'")->find();
+                 
+                 if(empty($device_could_info )){
+                     $res = $DevicesCloud->add( ['deviceid'=>$post['deviceID'], 'addtime'=>time(), 'acid'=>$_SESSION['acid']] );
+                     if(empty($res)) E('入库失败!',40004);
+                 }else{
+                     $res = $DevicesCloud->where('id='.$device_could_info['id'])->save( [ 'addtime'=>time(), 'acid'=>$_SESSION['acid']] );
+                     if(empty($res)) E('入库更新失败!',40005);
+                 }
+                
+//                 // 客户库
+//                 $device_model = M('devices',$_SESSION['DB_CONFIG']['DB_PREFIX']);
+//                 $device_info = $device_model->where("device_code='{$post['deviceID']}'")->find();
+//
+//                 if( !empty($device_info) ){
+//                     if(!empty($post['type_id'])){
+//                         $saveData['type_id'] = $post['type_id'];
+//                     }
+//                     if(!empty($post['vid'])){
+//                         if( $this->bindDevice($device_info['id'], $post['vid']) ){
+//                             $saveData['binding_statu'] = 1;
+//                         }
+//                     }
+//                     $saveData['addtime'] = time();
+//
+//                     $res =  $device_model->where('id='.$device_info['id'])->save($saveData);
+//
+//                 } else {
+//                     $addData['device_code'] = $post['deviceID'];
+//                     $addData['addtime']     = time();
+//
+//                     if(!empty($post['type_id'])){
+//                         $addData['type_id'] = $post['type_id'];
+//                     }
+//                     $res = $device_model->add($addData);
+
+//                     if(!empty($post['vid'])){
+//                         if( $this->bindDevice($res, $post['vid']) ){
+//                             $saveData['binding_statu'] = 1;
+//                             $device_model->where('id='.$res)->save($saveData);
+//                         }
+//                     }
+                // }
+
+                 if($res){  
+                     E('成功',200);
+                 }else{
+                     E('失败',40010);
+                 }
+             }
+
         } catch (\Exception $e) {
             toJson($e);
         }
@@ -342,15 +457,15 @@ class DeviceController extends AppframeController
 
 
             $data = self::$devices_model->where($map)->find();
-
+          //  var_dump($data);die;
             if(!empty($data['acid'])){
                 $account = M('account')->where("id='{$data['acid']}'")->find();
                 if(empty($account['domain'])){
                     E('该设备未绑定客户未设置参数',40003);
                 }else{
-                    $this->toJson(['domain'=>$account['domain'], 'type_id'=>$data['typeid'],'sumtime'=>$data['sumtime'],'wx_appid'=>$data['wx_appid'],'wx_appsecret'=>$data['wx_appsecret'],'wx_original'=>$data['wx_original'],'d_type'=>$data['d_type']],'获取成功!',200);
+                    $this->toJson(['domain'=>$account['domain'], 'type_id'=>$data['typeid'],'sumtime'=>$data['sumtime'],'wx_appid'=>$account['wx_appid'],'wx_appsecret'=>$account['wx_appsecret'],'wx_original'=>$account['wx_original'],'d_type'=>$data['d_type']],'获取成功!',200);
                 }
-            }else{
+            }else{  
                 E('该设备未绑定客户!',40002);
             }
 
@@ -390,5 +505,26 @@ class DeviceController extends AppframeController
     private static function getDeviceStatu($map)
     {
         return  self::$devices_model->where($map )->find();
+    }
+
+    /**
+     * CURL使用
+     * @param  string $url  URL地址
+     * @param  Array $data 传递数据
+     * @return string  $output     传递数据时返回的结果
+     */
+    public function https_request($url,$data = null){
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
+        if (!empty($data)){
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        }
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        $output = curl_exec($curl);
+        curl_close($curl);
+        return $output;
     }
 }
